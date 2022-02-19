@@ -1,6 +1,6 @@
 # Projeto Calculadora de IMC
 Projeto básico para aprendizado de react-native.
-by Carlos - Desenvolvedor Front-End Junior
+##### by Carlos - Desenvolvedor Front-End Junior
 
 ## Instruções para rodar o projeto
 ### Crie um diretório da sua preferência
