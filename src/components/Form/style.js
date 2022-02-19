@@ -48,6 +48,10 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: 'red',
     paddingLeft: 20
+  },
+  exibitionResultImc: {
+    width: '100%',
+    height: '50%'
   }
 });
 

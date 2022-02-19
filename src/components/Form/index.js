@@ -51,58 +51,72 @@ function Form() {
   }
 
   return (
-    <Pressable
-      onPress={Keyboard.dismiss}
-      style={styles.formContext}>
-      <View style={styles.form}>
-        <Text
-          style={styles.formLabel}
+    <View style={styles.formContext}>
+      {!imc ?
+        <Pressable
+          onPress={Keyboard.dismiss}
+          style={styles.form}>
+            <Text
+              style={styles.formLabel}
+            >
+              Altura
+            </Text>
+            <TextInput
+              style={styles.formInput}
+              onChangeText={setHeight}
+              value={height}
+              placeholder="Exemplo: 1.70"
+              keyboardType='numeric'
+            />
+            <Text
+              style={styles.formErrorMessage}
+            >
+              {!height && errorMessage}
+            </Text>
+            <Text
+              style={styles.formLabel}
+            >
+              Peso
+            </Text>
+            <TextInput
+              style={styles.formInput}
+              onChangeText={setWeight}
+              value={weight}
+              placeholder="Exemplo: 60.00"
+              keyboardType='numeric'
+            />
+            <Text
+              style={styles.formErrorMessage}
+            >
+              {!weight && errorMessage}
+            </Text>
+            <TouchableOpacity
+              style={styles.formButton}
+              onPress={() => validateImc()}
+            >
+              <Text
+                style={styles.formTextButton}
+              >{textButton}</Text>
+            </TouchableOpacity>
+        </Pressable>
+        :
+        <View
+          style={styles.exibitionResultImc}
         >
-          Altura
-        </Text>
-        <TextInput
-          style={styles.formInput}
-          onChangeText={setHeight}
-          value={height}
-          placeholder="Exemplo: 1.70"
-          keyboardType='numeric'
-        />
-        <Text
-          style={styles.formErrorMessage}
-        >
-          {!height && errorMessage}
-        </Text>
-        <Text
-          style={styles.formLabel}
-        >
-          Peso
-        </Text>
-        <TextInput
-          style={styles.formInput}
-          onChangeText={setWeight}
-          value={weight}
-          placeholder="Exemplo: 60.00"
-          keyboardType='numeric'
-        />
-        <Text
-          style={styles.formErrorMessage}
-        >
-          {!weight && errorMessage}
-        </Text>
-        <TouchableOpacity
-          style={styles.formButton}
-          onPress={() => validateImc()}
-        >
-          <Text
-            style={styles.formTextButton}
-          >{textButton}</Text>
-        </TouchableOpacity>
-      </View>
-      <ResultImc
-        imc={imc}
-        messageImc={messageImc}
-      />
-    </Pressable>
+          <ResultImc
+            imc={imc}
+            messageImc={messageImc}
+          />
+          <TouchableOpacity
+              style={styles.formButton}
+              onPress={() => validateImc()}
+            >
+              <Text
+                style={styles.formTextButton}
+              >{textButton}</Text>
+          </TouchableOpacity>
+        </View>}
+    </View>
   )
 }
 

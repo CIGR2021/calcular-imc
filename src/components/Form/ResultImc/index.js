@@ -20,16 +20,14 @@ function ResultImc({imc, messageImc}) {
         style={styles.styleImc}
       >{imc}</Text>
       <View style={styles.styleBoxShareButton}>
-        {imc
-          ? <TouchableOpacity
-              style={styles.styleShared}
-              onPress={() => onShare()}
-            >
-              <Text
-                style={styles.styleTextShared}
-              >Compartilhar</Text>
-            </TouchableOpacity>
-          : <View />}
+        <TouchableOpacity
+          style={styles.styleShared}
+          onPress={() => onShare()}
+        >
+          <Text
+            style={styles.styleTextShared}
+          >Compartilhar</Text>
+        </TouchableOpacity>
       </View>
     </View>
   )
