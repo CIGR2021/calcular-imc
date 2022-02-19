@@ -1,0 +1,17 @@
+import React from 'react'
+import { Text, View } from 'react-native'
+import styles from './style';
+
+function Title() {
+  return (
+    <View style={styles.boxTitle}>
+      <Text
+        style={styles.textTitle}
+      >
+        Calculadora IMC
+      </Text>
+    </View>
+  )
+}
+
+export default Title;
