@@ -7,7 +7,8 @@ import {
   Vibration,
   Pressable,
   Keyboard,
-  FlatList
+  FlatList,
+  Image
 } from 'react-native';
 import ResultImc from './ResultImc/'
 import styles from './style';
@@ -61,7 +62,6 @@ function Form() {
     setMessageImc('Preencha peso e altura')
   }
 
-  console.log(imcList)
   return (
     <View style={styles.formContext}>
       {!imc ?
@@ -110,6 +110,9 @@ function Form() {
                 style={styles.formTextButton}
               >{textButton}</Text>
             </TouchableOpacity>
+            <Image
+              style={styles.formImage}
+              source={require('../../image/tabela-imc.png')}/>
         </Pressable>
         :
         <View
