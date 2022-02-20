@@ -7,7 +7,8 @@ import {
   Vibration,
   Pressable,
   Keyboard,
-  FlatList
+  FlatList,
+  Image
 } from 'react-native';
 import ResultImc from './ResultImc/'
 import styles from './style';
@@ -22,6 +23,7 @@ function Form() {
   const [textButton, setTextButton] = useState('Calcular');
   const [errorMessage, setErrorMessage] = useState(null);
   const [imcList, setImcList] = useState([]);
+  const [status, setStatus] = useState('');
 
   const imcCalculator = () => {
     let weightFormat = weight.replace(',', '.')
@@ -35,6 +37,7 @@ function Form() {
         }]
     );
     setImc(totalImc);
+    metricaIMC(totalImc)
 
   }
 
@@ -44,6 +47,23 @@ function Form() {
       setErrorMessage('campo obrigatório*')
     }
   }
+
+  const metricaIMC = (imc) => {
+    if (parseFloat(imc) < 18.50) {
+      return setStatus('Abaixo do Peso')
+    } if (parseFloat(imc) >= 18.5 && parseFloat(imc) < 25) {
+      return setStatus('Peso Normal')
+    } if (parseFloat(imc) >= 25 && parseFloat(imc) < 30 ) {
+      return setStatus('Sobrepeso')
+    } if (parseFloat(imc) >= 30 && parseFloat(imc) < 35.00) {
+      return setStatus('Obesidade Grau I')
+    } if (parseFloat(imc) >= 35 && parseFloat(imc) < 40.00) {
+      return setStatus('Obesidade Grau II')
+    } else {
+      return setStatus('Obesidade Grau III ou Mórbida')
+    }
+  }
+
   const validateImc = () => {
     setImc(null);
     verifyImc();
@@ -61,7 +81,6 @@ function Form() {
     setMessageImc('Preencha peso e altura')
   }
 
-  console.log(imcList)
   return (
     <View style={styles.formContext}>
       {!imc ?
@@ -110,12 +129,16 @@ function Form() {
                 style={styles.formTextButton}
               >{textButton}</Text>
             </TouchableOpacity>
+            <Image
+              style={styles.formImage}
+              source={require('../../image/tabela-imc.png')}/>
         </Pressable>
         :
         <View
           style={styles.exibitionResultImc}
         >
           <ResultImc
+            status={status}
             imc={imc}
             messageImc={messageImc}
           />

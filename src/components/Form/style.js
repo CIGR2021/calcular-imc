@@ -66,6 +66,12 @@ const styles = StyleSheet.create({
   textResultImcItem: {
     fontSize: 16,
     color: 'green'
+  },
+  formImage: {
+    marginTop: 30,
+    width: 'auto',
+    height: 200,
+    resizeMode: 'stretch',
   }
 });
 
