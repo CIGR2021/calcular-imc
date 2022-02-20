@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, Share, TouchableOpacity, TextInput } from 'react-native';
 import styles from './style';
 
-function ResultImc({imc, messageImc}) {
+function ResultImc({imc, messageImc, status}) {
   const onShare = async() => {
     const result = await Share.share({
       message: 'Meu IMC hoje é: ${imc}'
@@ -19,6 +19,7 @@ function ResultImc({imc, messageImc}) {
       <Text
         style={styles.styleImc}
       >{imc}</Text>
+      <Text>Você está com {status}</Text>
       <View style={styles.styleBoxShareButton}>
         <TouchableOpacity
           style={styles.styleShared}

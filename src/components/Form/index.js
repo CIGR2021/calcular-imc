@@ -23,6 +23,7 @@ function Form() {
   const [textButton, setTextButton] = useState('Calcular');
   const [errorMessage, setErrorMessage] = useState(null);
   const [imcList, setImcList] = useState([]);
+  const [status, setStatus] = useState('');
 
   const imcCalculator = () => {
     let weightFormat = weight.replace(',', '.')
@@ -36,6 +37,7 @@ function Form() {
         }]
     );
     setImc(totalImc);
+    metricaIMC(totalImc)
 
   }
 
@@ -45,6 +47,23 @@ function Form() {
       setErrorMessage('campo obrigatório*')
     }
   }
+
+  const metricaIMC = (imc) => {
+    if (parseFloat(imc) < 18.50) {
+      return setStatus('Abaixo do Peso')
+    } if (parseFloat(imc) >= 18.5 && parseFloat(imc) < 25) {
+      return setStatus('Peso Normal')
+    } if (parseFloat(imc) >= 25 && parseFloat(imc) < 30 ) {
+      return setStatus('Sobrepeso')
+    } if (parseFloat(imc) >= 30 && parseFloat(imc) < 35.00) {
+      return setStatus('Obesidade Grau I')
+    } if (parseFloat(imc) >= 35 && parseFloat(imc) < 40.00) {
+      return setStatus('Obesidade Grau II')
+    } else {
+      return setStatus('Obesidade Grau III ou Mórbida')
+    }
+  }
+
   const validateImc = () => {
     setImc(null);
     verifyImc();
@@ -119,6 +138,7 @@ function Form() {
           style={styles.exibitionResultImc}
         >
           <ResultImc
+            status={status}
             imc={imc}
             messageImc={messageImc}
           />
